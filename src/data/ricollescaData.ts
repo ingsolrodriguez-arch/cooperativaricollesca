@@ -72,10 +72,10 @@ export const HERO_DATA = {
       caption: 'Logística de perforación y transporte pesado en campo',
     },
     {
-      id: 'hero-mack-plataforma',
-      src: '/assets/aistudio/55993_21651967.jpg',
-      alt: 'Gandola Mack blanca con plataforma amarilla de carga pesada en patio operativo',
-      caption: 'Gandola Mack con plataforma de transporte pesado',
+      id: 'hero-inspeccion-industrial',
+      src: '/assets/ricollesca/trabajos/trabajo-inspeccion-industrial.jpg',
+      alt: 'Equipo técnico en inspección de instalaciones industriales con tanques de almacenamiento, tuberías, válvulas y pasarelas',
+      caption: 'Inspección, supervisión y planificación en instalaciones industriales',
     },
     {
       id: 'hero-palfinger-campo',
