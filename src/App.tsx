@@ -17,12 +17,9 @@ import {LightboxModal} from './components/LightboxModal';
 import {WhatsAppButton} from './components/WhatsAppButton';
 import {
   COMPANY_INFO,
-  EXPERIENCE_INTRO,
-  EXPERIENCE_SUBTITLE,
   FLEET_ITEMS,
   HERO_DATA,
   LEADERSHIP_AND_IDENTITY,
-  OPERATIONAL_SOLUTIONS,
   PARTNERS,
   CLIENT_WORKS,
   SERVICES,
@@ -546,7 +543,7 @@ export default function App() {
         <section id="experiencia" className="bg-[#F9F8F9] py-16 lg:py-20 border-b border-slate-200/80">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-              {/* Left: Narrative & 3 Pillars */}
+              {/* Left: Narrative */}
               <div className="lg:col-span-6 space-y-6">
                 <div>
                   <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#02233C] text-balance">
@@ -556,30 +553,44 @@ export default function App() {
                   <div className="w-12 h-0.5 bg-[#ECC440] mt-3" />
                 </div>
 
-                <p className="text-sm sm:text-base text-[#02233C]/80 leading-relaxed">
-                  {EXPERIENCE_INTRO}
-                </p>
-
-                <p className="text-sm sm:text-base font-medium text-[#02233C]">
-                  {EXPERIENCE_SUBTITLE}
-                </p>
-
-                <ul className="space-y-4 pt-1">
-                  {OPERATIONAL_SOLUTIONS.map((sol) => (
-                    <li key={sol.id} className="flex items-start gap-3.5">
-                      <CheckCircle2
-                        className="w-5 h-5 text-[#055D9B] shrink-0 mt-0.5"
-                        strokeWidth={2}
-                      />
-                      <div className="text-sm sm:text-[15px] leading-relaxed text-[#02233C]/85">
-                        <strong className="font-semibold text-[#02233C]">
-                          {sol.title}:
-                        </strong>{' '}
-                        {sol.description}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                {/* Relación de experiencia operativa */}
+                <div className="relative pl-6">
+                  <div
+                    aria-hidden
+                    className="absolute left-0 top-2 bottom-2 w-[3px] rounded-full bg-gradient-to-b from-[#ECC440] via-[#ECC440]/55 to-transparent"
+                  />
+                  <p className="text-[15px] sm:text-[17px] leading-[1.9] text-[#02233C]/85">
+                    Respaldamos nuestra experiencia operativa trabajando junto a organizaciones
+                    como{' '}
+                    <strong className="font-semibold text-[#02233C]">
+                      PDVSA, TROIL, Indioil y TEPECA
+                    </strong>
+                    . Hemos apoyado operaciones en distintas áreas —incluyendo la{' '}
+                    <strong className="font-semibold text-[#055D9B]">
+                      Faja Petrolífera del Orinoco
+                    </strong>
+                    — mediante{' '}
+                    <strong className="font-semibold text-[#02233C]">
+                      suministro de insumos alimenticios/proteicos
+                    </strong>
+                    ,{' '}
+                    <strong className="font-semibold text-[#02233C]">
+                      movilización de equipos en (low boy, batea y volqueta)
+                    </strong>{' '}
+                    y{' '}
+                    <strong className="font-semibold text-[#02233C]">
+                      servicios de agua fresca mediante vacums
+                    </strong>
+                    ,
+                  </p>
+                  <p className="mt-5 text-[15px] sm:text-[17px] leading-[1.9] text-[#02233C]">
+                    garantizando{' '}
+                    <span className="font-semibold text-[#055D9B]">
+                      compromiso, puntualidad y respuesta efectiva
+                    </span>{' '}
+                    en cada contrato.
+                  </p>
+                </div>
               </div>
 
               {/* Right: Partner Logos Proof Grid */}
