@@ -192,65 +192,67 @@ export default function App() {
         {/* 2. IDENTIDAD, LIDERAZGO Y PROPÓSITO CORPORATIVO */}
         <section id="nosotros" className="relative bg-[#02233C] text-white overflow-hidden">
           {/* Luz ambiental sutil */}
-          <div aria-hidden className="absolute -top-40 -right-40 w-[560px] h-[560px] rounded-full bg-[#055D9B]/12 blur-[130px] pointer-events-none" />
-          <div aria-hidden className="absolute -bottom-48 -left-32 w-[480px] h-[480px] rounded-full bg-[#ECC440]/8 blur-[130px] pointer-events-none" />
+          <div aria-hidden className="absolute -top-40 -right-40 w-[560px] h-[560px] rounded-full bg-[#055D9B]/10 blur-[130px] pointer-events-none" />
+          <div aria-hidden className="absolute -bottom-48 -left-32 w-[480px] h-[480px] rounded-full bg-[#ECC440]/6 blur-[130px] pointer-events-none" />
 
-          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-            {/* Cabecera tipográfica */}
-            <div className="max-w-2xl">
-              <p className="text-[11px] font-semibold tracking-[0.32em] text-[#ECC440] uppercase">
+          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+            {/* Cabecera tipográfica sobria */}
+            <div className="max-w-xl">
+              <p className="text-[10px] font-semibold tracking-[0.32em] text-[#ECC440]/90 uppercase">
                 Identidad corporativa
               </p>
-              <h2 className="mt-5 text-3xl sm:text-4xl lg:text-[42px] font-bold tracking-tight leading-[1.15]">
+              <h2 className="mt-4 text-2xl sm:text-[28px] lg:text-[32px] font-semibold tracking-tight leading-[1.25]">
                 Liderazgo y propósito que{' '}
                 <span className="text-[#ECC440]">generan confianza</span>
               </h2>
-              <div className="mt-7 h-px w-20 bg-gradient-to-r from-[#ECC440] to-transparent" />
+              <div className="mt-6 h-px w-14 bg-[#ECC440]/80" />
             </div>
 
-            <div className="mt-14 grid lg:grid-cols-12 gap-12 lg:gap-16">
-              {/* C.E.O. — retrato minimalista */}
+            <div className="mt-12 grid lg:grid-cols-12 gap-10 lg:gap-14">
+              {/* C.E.O. — perfil editorial compacto */}
               <div className="lg:col-span-5">
-                <figure className="relative">
-                  <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
-                    <ResilientImage
-                      src={LEADERSHIP_AND_IDENTITY.ceo.photo}
-                      alt={LEADERSHIP_AND_IDENTITY.ceo.name}
-                      className="w-full h-full object-cover object-top"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#02233C] via-[#02233C]/15 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 p-6">
-                      <p className="text-[10px] font-semibold tracking-[0.3em] text-[#ECC440] uppercase">
-                        {LEADERSHIP_AND_IDENTITY.ceo.role}
-                      </p>
-                      <h3 className="mt-2 text-2xl font-bold tracking-tight leading-tight">
-                        {LEADERSHIP_AND_IDENTITY.ceo.name}
-                      </h3>
+                <div className="flex items-start gap-5">
+                  {/* Foto contenida */}
+                  <div className="relative w-[124px] sm:w-[148px] shrink-0">
+                    <div className="relative aspect-[3/4] rounded-xl overflow-hidden border border-white/10">
+                      <ResilientImage
+                        src={LEADERSHIP_AND_IDENTITY.ceo.photo}
+                        alt={LEADERSHIP_AND_IDENTITY.ceo.name}
+                        className="w-full h-full object-cover object-top"
+                      />
                     </div>
-                    {/* Acentos de esquina */}
-                    <div aria-hidden className="absolute top-4 left-4 w-7 h-7 border-t border-l border-[#ECC440]/60" />
-                    <div aria-hidden className="absolute bottom-4 right-4 w-7 h-7 border-b border-r border-[#ECC440]/60" />
+                    <div aria-hidden className="absolute -bottom-1.5 -right-1.5 w-8 h-8 border-b border-r border-[#ECC440]/50 rounded-br-lg" />
                   </div>
-                  <figcaption className="mt-6 text-[15px] text-white/70 leading-relaxed">
-                    {LEADERSHIP_AND_IDENTITY.ceo.bio}
-                  </figcaption>
-                </figure>
+
+                  {/* Nombre y rol */}
+                  <div className="pt-1.5">
+                    <p className="text-[9px] font-semibold tracking-[0.28em] text-[#ECC440]/90 uppercase">
+                      {LEADERSHIP_AND_IDENTITY.ceo.role}
+                    </p>
+                    <h3 className="mt-2 text-base sm:text-lg font-semibold tracking-tight leading-snug">
+                      {LEADERSHIP_AND_IDENTITY.ceo.name}
+                    </h3>
+                    <div className="mt-3 h-px w-8 bg-white/20" />
+                  </div>
+                </div>
+
+                {/* Biografía — medida de lectura cómoda */}
+                <p className="mt-6 text-[13px] leading-[1.75] text-white/55 max-w-md">
+                  {LEADERSHIP_AND_IDENTITY.ceo.bio}
+                </p>
               </div>
 
-              {/* Misión & Visión — bloques tipográficos con filetes */}
+              {/* Misión & Visión — filetes finos */}
               <div className="lg:col-span-7">
-                <div className="border-y border-white/10">
+                <div className="border-t border-white/10">
                   {/* Misión */}
-                  <div className="grid sm:grid-cols-[170px_1fr] gap-3 sm:gap-8 py-9">
+                  <div className="grid sm:grid-cols-[128px_1fr] gap-2 sm:gap-7 py-7">
                     <div>
-                      <span className="inline-flex items-center gap-3">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#ECC440]" />
-                        <span className="text-[11px] font-semibold tracking-[0.28em] text-white/55 uppercase">
-                          {LEADERSHIP_AND_IDENTITY.mission.title}
-                        </span>
+                      <span className="text-[9px] font-semibold tracking-[0.26em] text-white/45 uppercase">
+                        {LEADERSHIP_AND_IDENTITY.mission.title}
                       </span>
                     </div>
-                    <p className="text-lg sm:text-[21px] text-white/90 leading-[1.65]">
+                    <p className="text-[15px] text-white/75 leading-[1.75]">
                       {LEADERSHIP_AND_IDENTITY.mission.text}
                     </p>
                   </div>
@@ -258,27 +260,25 @@ export default function App() {
                   <div className="h-px bg-white/10" />
 
                   {/* Visión */}
-                  <div className="grid sm:grid-cols-[170px_1fr] gap-3 sm:gap-8 py-9">
+                  <div className="grid sm:grid-cols-[128px_1fr] gap-2 sm:gap-7 py-7">
                     <div>
-                      <span className="inline-flex items-center gap-3">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#ECC440]" />
-                        <span className="text-[11px] font-semibold tracking-[0.28em] text-white/55 uppercase">
-                          {LEADERSHIP_AND_IDENTITY.vision.title}
-                        </span>
+                      <span className="text-[9px] font-semibold tracking-[0.26em] text-white/45 uppercase">
+                        {LEADERSHIP_AND_IDENTITY.vision.title}
                       </span>
                     </div>
-                    <p className="text-lg sm:text-[21px] text-white/90 leading-[1.65]">
+                    <p className="text-[15px] text-white/75 leading-[1.75]">
                       {LEADERSHIP_AND_IDENTITY.vision.text}
                     </p>
                   </div>
+                  <div className="h-px bg-white/10" />
                 </div>
 
                 {/* Quiénes somos — panel limpio */}
-                <div className="mt-10 rounded-2xl border border-white/10 p-7 sm:p-8">
-                  <p className="text-[11px] font-semibold tracking-[0.3em] text-[#ECC440] uppercase">
+                <div className="mt-8 rounded-xl border border-white/10 px-6 py-5">
+                  <p className="text-[9px] font-semibold tracking-[0.28em] text-[#ECC440]/90 uppercase">
                     {LEADERSHIP_AND_IDENTITY.about.title}
                   </p>
-                  <p className="mt-4 text-[15px] sm:text-base text-white/75 leading-relaxed">
+                  <p className="mt-3 text-[13px] text-white/60 leading-[1.75]">
                     {LEADERSHIP_AND_IDENTITY.about.text}
                   </p>
                 </div>
