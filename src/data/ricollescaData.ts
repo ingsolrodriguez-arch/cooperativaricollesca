@@ -72,12 +72,6 @@ export const HERO_DATA = {
       caption: 'Logística de perforación y transporte pesado en campo',
     },
     {
-      id: 'hero-mack-plataforma',
-      src: '/assets/aistudio/55993_21651967.jpg',
-      alt: 'Gandola Mack blanca con plataforma amarilla de carga pesada en patio operativo',
-      caption: 'Gandola Mack con plataforma de transporte pesado',
-    },
-    {
       id: 'hero-palfinger-campo',
       src: '/assets/aistudio/56326_f1729933.jpg',
       alt: 'Brazo hidráulico Palfinger PK 6501 operando con cuadrilla en campo',
