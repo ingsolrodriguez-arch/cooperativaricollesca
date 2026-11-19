@@ -9,6 +9,7 @@ import {
   Mail,
   MapPin,
   Phone,
+  X,
 } from 'lucide-react';
 import {Navbar} from './components/Navbar';
 import {ResilientImage} from './components/ResilientImage';
@@ -23,6 +24,7 @@ import {
   LEADERSHIP_AND_IDENTITY,
   OPERATIONAL_SOLUTIONS,
   PARTNERS,
+  CLIENT_WORKS,
   SERVICES,
   SERVICE_GALLERY,
 } from './data/ricollescaData';
@@ -39,6 +41,7 @@ export default function App() {
     caption: string;
   } | null>(null);
   const [copiedField, setCopiedField] = useState<'phone' | 'email' | null>(null);
+  const [worksPartner, setWorksPartner] = useState<string | null>(null);
 
   const activeHeroPhoto = HERO_DATA.gallery[activeHeroIndex] ?? HERO_DATA.gallery[0];
 
@@ -536,19 +539,29 @@ export default function App() {
                   </p>
 
                   <div className="grid grid-cols-2 gap-4">
-                    {PARTNERS.map((partner) => (
-                      <div
-                        key={partner.id}
-                        className="bg-white border border-slate-200/80 rounded-lg p-5 h-28 flex items-center justify-center"
-                      >
-                        <ResilientImage
-                          src={partner.logo}
-                          alt={`Logo de ${partner.name}`}
-                          fallbackLabel={partner.name}
-                          className="max-h-16 w-auto object-contain"
-                        />
-                      </div>
-                    ))}
+                    {PARTNERS.map((partner) => {
+                      const works = CLIENT_WORKS[partner.id] ?? [];
+                      return (
+                        <button
+                          key={partner.id}
+                          type="button"
+                          onClick={() => setWorksPartner(partner.id)}
+                          aria-label={`Ver obras y contratos ejecutados para ${partner.name}`}
+                          className="group relative bg-white border border-slate-200/80 rounded-lg p-5 h-28 flex items-center justify-center transition-all duration-200 hover:border-[#ECC440] hover:shadow-[0_12px_30px_rgba(2,35,60,0.10)] cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#055D9B]"
+                        >
+                          <ResilientImage
+                            src={partner.logo}
+                            alt={`Logo de ${partner.name}`}
+                            fallbackLabel={partner.name}
+                            className="max-h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.04]"
+                          />
+                          <span className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-[#02233C] text-white text-[10px] font-semibold px-2.5 py-1 rounded-full opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 whitespace-nowrap">
+                            <FileText size={10} strokeWidth={2.5} />
+                            {works.length > 0 ? `Ver ${works.length} obra${works.length > 1 ? 's' : ''}` : 'Ver detalle'}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

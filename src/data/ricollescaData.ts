@@ -294,3 +294,114 @@ export const PARTNERS: PartnerItem[] = [
     logo: '/assets/ricollesca/partner_tepeca.png',
   },
 ];
+
+export interface ClientWork {
+  contract: string;
+  title: string;
+  period: string;
+}
+
+export const CLIENT_WORKS: Record<string, ClientWork[]> = {
+  pdvsa: [
+    {
+      contract: '4502606532',
+      title:
+        'Adecuación socioambiental de las instalaciones del Centro Didáctico Ambiental (CDA) y Vivero Forestal — Gerencia de Ambiente E y P, División Ayacucho. Fase II.',
+      period: '31-05-2016 → 18-07-2017',
+    },
+    {
+      contract: '4600066062',
+      title: 'Mantenimiento menor eléctrico de las áreas de salud del Distrito San Tomé.',
+      period: '13-07-2016 → 04-10-2017',
+    },
+    {
+      contract: '4600066289',
+      title:
+        'Mantenimiento y mejoras de reparaciones civiles de la sede administrativa Base Bicentenario (Akere), áreas remotas del Distrito San Tomé, División Ayacucho. Etapa I.',
+      period: '01-08-2016 → 01-08-2017',
+    },
+    {
+      contract: '4600066866',
+      title:
+        'Adecuación y mejoras de módulos de comedor, aulas de clases y consultorios médicos (Los Pioneros), comunidad La Victoria, Distrito San Tomé, División Ayacucho.',
+      period: '05-09-2016 → 20-08-2017',
+    },
+    {
+      contract: '4600070233',
+      title:
+        'Mantenimiento correctivo de carpintería y tabiquería en áreas residenciales, operativas y administrativas del Distrito San Tomé, División Ayacucho. Frente I.',
+      period: '02-01-2017 → 14-12-2017',
+    },
+    {
+      contract: '4600070234',
+      title:
+        'Mantenimiento correctivo de carpintería y tabiquería en áreas residenciales, operativas y administrativas del Distrito San Tomé, División Ayacucho. Frente II.',
+      period: '02-01-2017 → 14-12-2017',
+    },
+    {
+      contract: '4600069714',
+      title: 'Mantenimiento menor eléctrico de los campos residenciales del Distrito San Tomé. Frente I.',
+      period: '09-01-2017 → 09-07-2017',
+    },
+    {
+      contract: '4600072210',
+      title:
+        'Mantenimiento preventivo y correctivo de equipos y sistemas electromecánicos instalados en el Edificio Sede Faja Petrolífera del Orinoco. Frente 1.',
+      period: '01-04-2017 → 01-10-2017',
+    },
+    {
+      contract: '4600073463',
+      title:
+        'Trabajo de plomería y albañilería en instalaciones clínicas y hospitalarias del Distrito San Tomé, División Ayacucho, estado Anzoátegui.',
+      period: '03-07-2017 → 04-10-2017',
+    },
+    {
+      contract: '4600073325',
+      title: 'Mantenimiento eléctrico integral de baja tensión de los centros operacionales del Distrito San Tomé.',
+      period: '03-07-2017 → 20-08-2017',
+    },
+    {
+      contract: '46000.73373',
+      title: 'Mantenimiento menores eléctricos de los campos residenciales del Distrito San Tomé.',
+      period: '17-07-2017 → 10-09-2017',
+    },
+    {
+      contract: '4600073790',
+      title:
+        'Sustitución de tuberías principales de aguas blancas, aguas servidas y drenajes en áreas administrativas y residenciales del Distrito San Tomé. Fase I.',
+      period: '17-07-2017 → 04-10-2017',
+    },
+    {
+      contract: '4600074222',
+      title:
+        'Suministro de hortalizas, verduras y frutas para la elaboración de comidas del Comedor Industrial Chimiré, Distrito San Tomé. Fase I.',
+      period: '21-07-2017 → 18-09-2017',
+    },
+    {
+      contract: 'SOLPED 1300107907',
+      title:
+        'Suministro de proteicos variados en apoyo institucional en áreas operacionales de la Faja Petrolífera del Orinoco, Área Norte.',
+      period: '09-09-2017 → 12-10-2017',
+    },
+    {
+      contract: 'SOLP 1300331358',
+      title: 'Servicio de vacums de agua fresca para las áreas pertenecientes a la División Ayacucho.',
+      period: '01-05-2019 → 31-05-2019',
+    },
+  ],
+  troil: [
+    {
+      contract: 'S/C',
+      title: 'Traslado de retroexcavadora en low boy.',
+      period: '01-07-2018 → 31-07-2018',
+    },
+  ],
+  tepeca: [
+    {
+      contract: 'S/C',
+      title: 'Servicio de vacums para trasegado de crudo de campo Farante.',
+      period: '01-02-2019 → 24-04-2019',
+    },
+  ],
+  indioil: [],
+};
