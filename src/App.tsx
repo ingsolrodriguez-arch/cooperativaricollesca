@@ -547,13 +547,13 @@ export default function App() {
                           type="button"
                           onClick={() => setWorksPartner(partner.id)}
                           aria-label={`Ver obras y contratos ejecutados para ${partner.name}`}
-                          className="group relative bg-white border border-slate-200/80 rounded-lg p-5 h-28 flex items-center justify-center transition-all duration-200 hover:border-[#ECC440] hover:shadow-[0_12px_30px_rgba(2,35,60,0.10)] cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#055D9B]"
+                          className={`group relative bg-white border border-slate-200/80 rounded-lg p-5 h-28 flex items-center justify-center transition-all duration-200 hover:border-[#ECC440] hover:shadow-[0_12px_30px_rgba(2,35,60,0.10)] cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#055D9B]${partner.id === 'indioil-tepeca' ? ' col-span-2' : ''}`}
                         >
                           <ResilientImage
                             src={partner.logo}
                             alt={`Logo de ${partner.name}`}
                             fallbackLabel={partner.name}
-                            className="max-h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.04]"
+                            className={`${partner.id === 'indioil-tepeca' ? 'max-h-20' : 'max-h-16'} w-auto object-contain transition-transform duration-200 group-hover:scale-[1.04]`}
                           />
                           <span className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-[#02233C] text-white text-[10px] font-semibold px-2.5 py-1 rounded-full opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 whitespace-nowrap">
                             <FileText size={10} strokeWidth={2.5} />

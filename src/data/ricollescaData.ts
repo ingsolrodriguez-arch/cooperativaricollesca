@@ -72,6 +72,12 @@ export const HERO_DATA = {
       caption: 'Logística de perforación y transporte pesado en campo',
     },
     {
+      id: 'hero-mack-plataforma',
+      src: '/assets/aistudio/55993_21651967.jpg',
+      alt: 'Gandola Mack blanca con plataforma amarilla de carga pesada en patio operativo',
+      caption: 'Gandola Mack con plataforma de transporte pesado',
+    },
+    {
       id: 'hero-palfinger-campo',
       src: '/assets/aistudio/56326_f1729933.jpg',
       alt: 'Brazo hidráulico Palfinger PK 6501 operando con cuadrilla en campo',
@@ -284,14 +290,9 @@ export const PARTNERS: PartnerItem[] = [
     logo: '/assets/ricollesca/partner_troil.png',
   },
   {
-    id: 'indioil',
-    name: 'Indioil',
-    logo: '/assets/ricollesca/partner_indioil.png',
-  },
-  {
-    id: 'tepeca',
-    name: 'TEPECA Técnica Petrolera C.A.',
-    logo: '/assets/ricollesca/partner_tepeca.png',
+    id: 'indioil-tepeca',
+    name: 'Indioil · TEPECA Técnica Petrolera C.A.',
+    logo: '/assets/ricollesca/partner_indioil_tepeca.jpg',
   },
 ];
 
@@ -396,12 +397,11 @@ export const CLIENT_WORKS: Record<string, ClientWork[]> = {
       period: '01-07-2018 → 31-07-2018',
     },
   ],
-  tepeca: [
+  'indioil-tepeca': [
     {
       contract: 'S/C',
       title: 'Servicio de vacums para trasegado de crudo de campo Farante.',
       period: '01-02-2019 → 24-04-2019',
     },
   ],
-  indioil: [],
 };
