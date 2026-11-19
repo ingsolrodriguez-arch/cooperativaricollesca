@@ -1,0 +1,6 @@
+{
+  "name": "Cooperativa Ricollesca de Venezuela R.L.",
+  "description": "Servicios y logística de perforación, transporte pesado, izamiento, soldadura y soporte operacional para la industria de petróleo y gas en Venezuela.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
