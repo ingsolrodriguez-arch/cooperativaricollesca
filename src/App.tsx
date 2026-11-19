@@ -32,6 +32,13 @@ import {
 
 type ServiceFilter = 'all' | 'logistica' | 'mantenimiento';
 
+const HERO_ALLIES = [
+  {name: 'PDVSA', logo: '/assets/ricollesca/partner_pdvsa.png', partnerId: 'pdvsa'},
+  {name: 'TROIL', logo: '/assets/ricollesca/partner_troil.png', partnerId: 'troil'},
+  {name: 'Indioil', logo: '/assets/ricollesca/partner_indioil.png', partnerId: 'indioil-tepeca'},
+  {name: 'TEPECA', logo: '/assets/ricollesca/partner_tepeca.png', partnerId: 'indioil-tepeca'},
+];
+
 export default function App() {
   const [activeHeroIndex, setActiveHeroIndex] = useState(0);
   const [serviceFilter, setServiceFilter] = useState<ServiceFilter>('all');
@@ -124,6 +131,7 @@ export default function App() {
 
               {/* Minimalist Entrance Photo Gallery */}
               <div className="min-w-0 lg:col-span-7 space-y-3">
+                <div className="relative">
                 <button
                   type="button"
                   onClick={() =>
@@ -155,6 +163,34 @@ export default function App() {
                     </span>
                   </div>
                 </button>
+
+                {/* Aliados — logos flotantes en el banner */}
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex items-center gap-2.5 bg-white/92 backdrop-blur-sm rounded-xl px-3 py-2 shadow-[0_10px_28px_rgba(2,35,60,0.18)] border border-white/70">
+                  <span className="hidden sm:inline text-[9px] font-semibold tracking-[0.18em] text-[#02233C]/55 uppercase">
+                    Aliados
+                  </span>
+                  <span aria-hidden="true" className="hidden sm:block w-px h-5 bg-[#02233C]/12" />
+                  <div className="flex items-center gap-2.5">
+                    {HERO_ALLIES.map((ally) => (
+                      <button
+                        key={ally.name}
+                        type="button"
+                        onClick={() => setWorksPartner(ally.partnerId)}
+                        aria-label={`Ver obras ejecutadas con ${ally.name}`}
+                        title={ally.name}
+                        className="rounded opacity-75 hover:opacity-100 transition-opacity duration-150 focus-visible:outline-2 focus-visible:outline-[#055D9B]"
+                      >
+                        <ResilientImage
+                          src={ally.logo}
+                          alt={`Logo de ${ally.name}`}
+                          fallbackLabel={ally.name}
+                          className="max-h-6 w-auto object-contain"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                </div>
 
                 {/* Clean 5-thumbnail switcher */}
                 <div
