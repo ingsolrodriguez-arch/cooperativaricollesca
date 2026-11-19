@@ -146,7 +146,7 @@ export const SERVICES: ServiceItem[] = [
     id: 'izamiento',
     index: '02',
     title: 'Izamiento',
-    description: 'Maniobras de elevación y posicionamiento de cargas pesadas.',
+    description: 'Maniobras de elevación, izamiento y traslado de carga y equipos pesados.',
     category: 'logistica',
     categoryLabel: 'Logística y Campo',
   },
@@ -182,6 +182,15 @@ export const SERVICES: ServiceItem[] = [
     category: 'mantenimiento',
     categoryLabel: 'Mantenimiento e Infraestructura',
   },
+  {
+    id: 'inspeccion',
+    index: '07',
+    title: 'Inspección y Supervisión Industrial',
+    description:
+      'Inspección, supervisión y planificación en instalaciones industriales con tanques de almacenamiento, tuberías, válvulas y pasarelas.',
+    category: 'logistica',
+    categoryLabel: 'Logística y Campo',
+  },
 ];
 
 export const SERVICE_GALLERY: GalleryPhoto[] = [
@@ -208,6 +217,51 @@ export const SERVICE_GALLERY: GalleryPhoto[] = [
     src: '/assets/ricollesca/img_53_496x372.png',
     alt: 'Camión con brazo hidráulico realizando maniobra de izamiento en campo',
     caption: 'Maniobras de izamiento y posicionamiento de materiales en campo',
+  },
+];
+
+export const WORKS_GALLERY: GalleryPhoto[] = [
+  {
+    id: 'trabajo-inspeccion-industrial',
+    src: '/assets/ricollesca/trabajos/trabajo-inspeccion-industrial.jpg',
+    alt: 'Equipo técnico en inspección de instalaciones industriales con tanques de almacenamiento, tuberías, válvulas y pasarelas',
+    caption: 'Inspección, supervisión y planificación en instalaciones industriales',
+  },
+  {
+    id: 'trabajo-izamiento-estructura',
+    src: '/assets/ricollesca/trabajos/trabajo-izamiento-estructura.jpg',
+    alt: 'Maniobra de izamiento y traslado de estructura metálica con grúa hidráulica Palfinger',
+    caption: 'Maniobras de izamiento y traslado de carga y equipos',
+  },
+  {
+    id: 'trabajo-perforacion-pavimento',
+    src: '/assets/ricollesca/trabajos/trabajo-perforacion-pavimento.jpg',
+    alt: 'Cuadrilla realizando perforación en pavimento para ubicar e intervenir tuberías y servicios',
+    caption: 'Perforación en pavimento para ubicación e intervención de servicios',
+  },
+  {
+    id: 'trabajo-retroexcavadora',
+    src: '/assets/ricollesca/trabajos/trabajo-retroexcavadora.jpg',
+    alt: 'Retroexcavadora abriendo zanja para localización e intervención de tuberías',
+    caption: 'Excavación para localización e intervención de tuberías',
+  },
+  {
+    id: 'trabajo-tuberias-topografia',
+    src: '/assets/ricollesca/trabajos/trabajo-tuberias-topografia.jpg',
+    alt: 'Tendido de tuberías con levantamiento topográfico en zona operativa',
+    caption: 'Tendido de tuberías con levantamiento topográfico',
+  },
+  {
+    id: 'trabajo-excavacion-topografia',
+    src: '/assets/ricollesca/trabajos/trabajo-excavacion-topografia.jpg',
+    alt: 'Excavación y levantamiento topográfico de precisión para intervención de tuberías',
+    caption: 'Excavación y topografía de precisión en intervención de servicios',
+  },
+  {
+    id: 'trabajo-oficina',
+    src: '/assets/ricollesca/trabajos/trabajo-oficina.jpg',
+    alt: 'Oficina administrativa adecuada con mobiliario y equipos operativos',
+    caption: 'Adecuación de espacios administrativos y operativos',
   },
 ];
 

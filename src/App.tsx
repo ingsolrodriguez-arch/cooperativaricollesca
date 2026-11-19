@@ -27,6 +27,7 @@ import {
   CLIENT_WORKS,
   SERVICES,
   SERVICE_GALLERY,
+  WORKS_GALLERY,
 } from './data/ricollescaData';
 
 type ServiceFilter = 'all' | 'logistica' | 'mantenimiento';
@@ -487,6 +488,56 @@ export default function App() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 4b. TRABAJOS EN TERRENO */}
+        <section id="trabajos" className="bg-white py-14 lg:py-20">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-10">
+              <p className="text-xs font-semibold tracking-wide text-[#055D9B]">
+                Labores ejecutadas en campo
+              </p>
+              <h2 className="mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-[#02233C]">
+                Trabajos en Terreno
+              </h2>
+              <div className="w-12 h-0.5 bg-[#ECC440] mt-3" />
+              <p className="mt-3 text-sm sm:text-base text-[#02233C]/70 max-w-2xl">
+                Inspección, supervisión y planificación en instalaciones industriales con tanques
+                de almacenamiento, tuberías, válvulas y pasarelas. Maniobras de izamiento y
+                traslado de carga, excavación e intervención de tuberías y servicios.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+              {WORKS_GALLERY.map((photo, idx) => (
+                <button
+                  key={photo.id}
+                  type="button"
+                  onClick={() =>
+                    setLightboxImage({src: photo.src, alt: photo.alt, caption: photo.caption})
+                  }
+                  aria-label={`Ver imagen: ${photo.caption}`}
+                  className={`group relative rounded-xl overflow-hidden border border-slate-200 bg-white cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#055D9B] ${
+                    idx === 0 ? 'col-span-2' : ''
+                  }`}
+                >
+                  <div className={idx === 0 ? 'aspect-[16/9]' : 'aspect-[4/3]'}>
+                    <ResilientImage
+                      src={photo.src}
+                      alt={photo.alt}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.05]"
+                    />
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#02233C]/90 via-[#02233C]/35 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-4">
+                    <p className="text-xs text-white font-medium leading-snug">{photo.caption}</p>
+                  </div>
+                  <span className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/85 grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <Expand size={14} className="text-[#02233C]" />
+                  </span>
+                </button>
+              ))}
             </div>
           </div>
         </section>
