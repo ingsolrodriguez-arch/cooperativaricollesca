@@ -23,6 +23,19 @@
   }
 }
 
+@keyframes slideProgress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.slide-progress {
+  animation: slideProgress 4.5s linear forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

@@ -1,8 +1,10 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {
   ArrowRight,
   Check,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
   Copy,
   Expand,
   FileText,
@@ -11,6 +13,7 @@ import {
   Phone,
   X,
 } from 'lucide-react';
+import {motion, AnimatePresence} from 'motion/react';
 import {Navbar} from './components/Navbar';
 import {ResilientImage} from './components/ResilientImage';
 import {LightboxModal} from './components/LightboxModal';
@@ -40,6 +43,18 @@ export default function App() {
   } | null>(null);
   const [copiedField, setCopiedField] = useState<'phone' | 'email' | null>(null);
   const [worksPartner, setWorksPartner] = useState<string | null>(null);
+  const [worksIndex, setWorksIndex] = useState(0);
+  const [worksPaused, setWorksPaused] = useState(false);
+
+  const worksSlides = [...WORKS_GALLERY, ...SERVICE_GALLERY];
+
+  useEffect(() => {
+    if (worksPaused) return;
+    const timer = setInterval(() => {
+      setWorksIndex((i) => (i + 1) % worksSlides.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [worksPaused, worksSlides.length]);
 
   const activeHeroPhoto = HERO_DATA.gallery[activeHeroIndex] ?? HERO_DATA.gallery[0];
 
@@ -335,69 +350,163 @@ export default function App() {
               </div>
             </div>
 
-            <div className="grid lg:grid-cols-12 gap-8 items-start">
-              {/* Service Cards Grid */}
-              <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
-                {filteredServices.map((service) => (
-                  <article
-                    key={service.id}
-                    className="bg-[#02233C] text-white rounded-xl p-5 sm:p-6 flex flex-col justify-between border border-[#04375F]"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between gap-3 text-xs text-white/60 mb-3">
-                        <span className="font-mono font-medium text-[#ECC440] tabular-nums">
-                          {service.index}.
-                        </span>
-                        <span>{service.categoryLabel}</span>
-                      </div>
-                      <h3 className="text-lg font-bold text-[#ECC440] leading-snug">
-                        {service.title}
-                      </h3>
-                      <p className="mt-2 text-sm text-white/85 leading-relaxed">
-                        {service.description}
-                      </p>
+            {/* Service Cards Grid */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {filteredServices.map((service) => (
+                <article
+                  key={service.id}
+                  className="group bg-[#02233C] text-white rounded-xl p-5 sm:p-6 flex flex-col justify-between border border-[#04375F] transition-all duration-200 hover:-translate-y-1 hover:border-[#ECC440]/50 hover:shadow-[0_18px_40px_rgba(2,35,60,0.25)]"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-3 text-xs text-white/60 mb-3">
+                      <span className="font-mono font-medium text-[#ECC440] tabular-nums">
+                        {service.index}.
+                      </span>
+                      <span>{service.categoryLabel}</span>
                     </div>
-                  </article>
-                ))}
+                    <h3 className="text-lg font-bold text-[#ECC440] leading-snug">
+                      {service.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-white/85 leading-relaxed">
+                      {service.description}
+                    </p>
+                  </div>
+                  <div className="mt-5 h-px w-full bg-gradient-to-r from-[#ECC440]/50 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+                </article>
+              ))}
+            </div>
+
+            {/* Labores ejecutadas en campo — carrusel moderno */}
+            <div className="mt-16">
+              <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+                <div className="max-w-2xl">
+                  <p className="text-xs font-semibold tracking-wide text-[#055D9B]">
+                    Labores ejecutadas en campo
+                  </p>
+                  <h3 className="mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-[#02233C]">
+                    Trabajos en Terreno
+                  </h3>
+                  <div className="w-12 h-0.5 bg-[#ECC440] mt-3" />
+                  <p className="mt-4 text-sm sm:text-base text-[#02233C]/75 leading-relaxed">
+                    Inspección, supervisión y planificación en instalaciones industriales con
+                    tanques de almacenamiento, tuberías, válvulas y pasarelas. Maniobras de
+                    izamiento y traslado de carga, excavación e intervención de tuberías y
+                    servicios.
+                  </p>
+                </div>
+
+                {/* Controles */}
+                <div className="flex items-center gap-2.5">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setWorksIndex((i) => (i - 1 + worksSlides.length) % worksSlides.length)
+                    }
+                    aria-label="Imagen anterior"
+                    className="w-11 h-11 rounded-full border border-[#02233C]/15 text-[#02233C] grid place-items-center transition-colors duration-150 hover:bg-[#02233C] hover:text-white focus-visible:outline-2 focus-visible:outline-[#055D9B]"
+                  >
+                    <ChevronLeft size={18} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setWorksIndex((i) => (i + 1) % worksSlides.length)}
+                    aria-label="Imagen siguiente"
+                    className="w-11 h-11 rounded-full border border-[#02233C]/15 text-[#02233C] grid place-items-center transition-colors duration-150 hover:bg-[#02233C] hover:text-white focus-visible:outline-2 focus-visible:outline-[#055D9B]"
+                  >
+                    <ChevronRight size={18} />
+                  </button>
+                </div>
               </div>
 
-              {/* Authentic Field Gallery */}
-              <div className="lg:col-span-5 space-y-4">
-                <button
-                  type="button"
-                  onClick={() => setLightboxImage(SERVICE_GALLERY[0])}
-                  className="group relative w-full rounded-xl overflow-hidden border border-slate-200 bg-white block text-left focus-visible:outline-2 focus-visible:outline-[#055D9B]"
-                >
-                  <ResilientImage
-                    src={SERVICE_GALLERY[0].src}
-                    alt={SERVICE_GALLERY[0].alt}
-                    className="w-full h-72 object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#02233C]/85 via-[#02233C]/35 to-transparent p-4 flex items-end justify-between gap-3">
-                    <span className="text-xs font-medium text-white">
-                      {SERVICE_GALLERY[0].caption}
-                    </span>
-                    <Expand className="w-4 h-4 text-[#ECC440] shrink-0" />
-                  </div>
-                </button>
-
-                <div className="grid grid-cols-3 gap-3">
-                  {SERVICE_GALLERY.slice(1).map((photo) => (
-                    <button
-                      key={photo.id}
-                      type="button"
-                      onClick={() => setLightboxImage(photo)}
-                      className="group relative rounded-lg overflow-hidden border border-[#ECC440]/60 bg-white aspect-[4/3] focus-visible:outline-2 focus-visible:outline-[#055D9B]"
-                      aria-label={`Ampliar imagen: ${photo.caption}`}
+              {/* Slider principal */}
+              <div
+                role="button"
+                tabIndex={0}
+                aria-label={`Ver imagen: ${worksSlides[worksIndex].caption}`}
+                onMouseEnter={() => setWorksPaused(true)}
+                onMouseLeave={() => setWorksPaused(false)}
+                onClick={() => setLightboxImage(worksSlides[worksIndex])}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setLightboxImage(worksSlides[worksIndex]);
+                  }
+                }}
+                className="group relative mt-8 rounded-2xl overflow-hidden border border-slate-200 bg-[#02233C] cursor-pointer aspect-[16/10] sm:aspect-[2/1] lg:aspect-[21/8]"
+              >
+                <AnimatePresence initial={false}>
+                  <motion.div
+                    key={worksSlides[worksIndex].id}
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    exit={{opacity: 0}}
+                    transition={{duration: 0.75, ease: 'easeInOut'}}
+                    className="absolute inset-0"
+                  >
+                    <motion.div
+                      initial={{scale: 1.02}}
+                      animate={{scale: 1.11}}
+                      transition={{duration: 6, ease: 'linear'}}
+                      className="absolute inset-0"
                     >
                       <ResilientImage
-                        src={photo.src}
-                        alt={photo.alt}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        src={worksSlides[worksIndex].src}
+                        alt={worksSlides[worksIndex].alt}
+                        className="w-full h-full object-cover"
                       />
-                    </button>
-                  ))}
+                    </motion.div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#02233C]/90 via-[#02233C]/15 to-transparent pointer-events-none" />
+
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7 flex items-end justify-between gap-4 pointer-events-none">
+                  <div>
+                    <p className="font-mono text-[11px] text-[#ECC440] tabular-nums tracking-[0.25em]">
+                      {String(worksIndex + 1).padStart(2, '0')} /{' '}
+                      {String(worksSlides.length).padStart(2, '0')}
+                    </p>
+                    <p className="mt-2 text-sm sm:text-base font-medium text-white max-w-2xl leading-snug">
+                      {worksSlides[worksIndex].caption}
+                    </p>
+                  </div>
+                  <span className="hidden sm:grid w-11 h-11 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 place-items-center transition-transform duration-200 group-hover:scale-110">
+                    <Expand className="w-4 h-4 text-white" />
+                  </span>
                 </div>
+
+                {/* Barra de progreso */}
+                <div className="absolute inset-x-0 bottom-0 h-1 bg-white/15">
+                  <div
+                    key={worksIndex}
+                    className="h-full bg-[#ECC440] slide-progress"
+                    style={{animationPlayState: worksPaused ? 'paused' : 'running'}}
+                  />
+                </div>
+              </div>
+
+              {/* Miniaturas */}
+              <div className="mt-4 flex gap-2.5 overflow-x-auto pb-1">
+                {worksSlides.map((photo, idx) => (
+                  <button
+                    key={photo.id}
+                    type="button"
+                    onClick={() => setWorksIndex(idx)}
+                    aria-label={`Ver: ${photo.caption}`}
+                    className={`relative w-20 h-14 sm:w-24 sm:h-16 flex-none rounded-lg overflow-hidden border transition-all duration-200 focus-visible:outline-2 focus-visible:outline-[#055D9B] ${
+                      idx === worksIndex
+                        ? 'border-[#ECC440] ring-2 ring-[#ECC440]/35 opacity-100 scale-[1.03]'
+                        : 'border-slate-200 opacity-55 hover:opacity-100'
+                    }`}
+                  >
+                    <ResilientImage
+                      src={photo.src}
+                      alt={photo.alt}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
               </div>
             </div>
           </div>
@@ -489,56 +598,6 @@ export default function App() {
           </div>
         </section>
 
-        {/* 4b. TRABAJOS EN TERRENO */}
-        <section id="trabajos" className="bg-white py-14 lg:py-20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-10">
-              <p className="text-xs font-semibold tracking-wide text-[#055D9B]">
-                Labores ejecutadas en campo
-              </p>
-              <h2 className="mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-[#02233C]">
-                Trabajos en Terreno
-              </h2>
-              <div className="w-12 h-0.5 bg-[#ECC440] mt-3" />
-              <p className="mt-3 text-sm sm:text-base text-[#02233C]/70 max-w-2xl">
-                Inspección, supervisión y planificación en instalaciones industriales con tanques
-                de almacenamiento, tuberías, válvulas y pasarelas. Maniobras de izamiento y
-                traslado de carga, excavación e intervención de tuberías y servicios.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-              {WORKS_GALLERY.map((photo, idx) => (
-                <button
-                  key={photo.id}
-                  type="button"
-                  onClick={() =>
-                    setLightboxImage({src: photo.src, alt: photo.alt, caption: photo.caption})
-                  }
-                  aria-label={`Ver imagen: ${photo.caption}`}
-                  className={`group relative rounded-xl overflow-hidden border border-slate-200 bg-white cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#055D9B] ${
-                    idx === 0 ? 'col-span-2' : ''
-                  }`}
-                >
-                  <div className={idx === 0 ? 'aspect-[16/9]' : 'aspect-[4/3]'}>
-                    <ResilientImage
-                      src={photo.src}
-                      alt={photo.alt}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.05]"
-                    />
-                  </div>
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#02233C]/90 via-[#02233C]/35 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-4">
-                    <p className="text-xs text-white font-medium leading-snug">{photo.caption}</p>
-                  </div>
-                  <span className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/85 grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    <Expand size={14} className="text-[#02233C]" />
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* 5. EXPERIENCIA COMPROBADA EN EL SECTOR ENERGÉTICO */}
         <section id="experiencia" className="bg-[#F9F8F9] py-16 lg:py-20 border-b border-slate-200/80">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -581,10 +640,7 @@ export default function App() {
                     <strong className="font-semibold text-[#02233C]">
                       servicios de agua fresca mediante vacums
                     </strong>
-                    ,
-                  </p>
-                  <p className="mt-5 text-[15px] sm:text-[17px] leading-[1.9] text-[#02233C]">
-                    garantizando{' '}
+                    , garantizando{' '}
                     <span className="font-semibold text-[#055D9B]">
                       compromiso, puntualidad y respuesta efectiva
                     </span>{' '}
