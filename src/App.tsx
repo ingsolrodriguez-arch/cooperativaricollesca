@@ -745,6 +745,104 @@ export default function App() {
 
       <WhatsAppButton />
       <LightboxModal image={lightboxImage} onClose={() => setLightboxImage(null)} />
+
+      {/* Modal: Relación de obras del cliente */}
+      {worksPartner &&
+        (() => {
+          const partner = PARTNERS.find((p) => p.id === worksPartner);
+          const works = CLIENT_WORKS[worksPartner] ?? [];
+          if (!partner) return null;
+          return (
+            <div
+              className="fixed inset-0 z-[70] flex items-center justify-center p-4"
+              role="dialog"
+              aria-modal="true"
+              aria-label={`Obras ejecutadas para ${partner.name}`}
+            >
+              <div
+                className="absolute inset-0 bg-[#02233C]/55 backdrop-blur-sm"
+                onClick={() => setWorksPartner(null)}
+              />
+              <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[82vh] flex flex-col overflow-hidden">
+                {/* Encabezado */}
+                <div className="flex items-center gap-4 px-6 pt-6 pb-5 border-b border-slate-200">
+                  <div className="w-16 h-12 shrink-0 flex items-center justify-center">
+                    <ResilientImage
+                      src={partner.logo}
+                      alt={`Logo de ${partner.name}`}
+                      fallbackLabel={partner.name}
+                      className="max-h-10 w-auto object-contain"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] font-semibold tracking-[0.22em] text-[#055D9B] uppercase">
+                      Relación de obras ejecutadas
+                    </p>
+                    <h3 className="text-lg font-bold text-[#02233C] truncate">{partner.name}</h3>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    {works.length > 0 && (
+                      <span className="hidden sm:inline-flex items-center gap-1.5 bg-[#02233C] text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+                        <CheckCircle2 size={13} strokeWidth={2.5} className="text-[#ECC440]" />
+                        {works.length} obra{works.length > 1 ? 's' : ''} · 100%
+                      </span>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => setWorksPartner(null)}
+                      aria-label="Cerrar"
+                      className="w-9 h-9 rounded-full border border-slate-200 grid place-items-center text-[#02233C] hover:bg-slate-100 transition-colors"
+                    >
+                      <X size={18} />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Lista de obras */}
+                <div className="overflow-y-auto px-6">
+                  {works.length === 0 ? (
+                    <p className="py-12 text-center text-sm text-[#02233C]/60">
+                      Relación de obras disponible bajo solicitud.
+                    </p>
+                  ) : (
+                    <ul className="divide-y divide-slate-100">
+                      {works.map((work) => (
+                        <li
+                          key={work.contract}
+                          className="py-4 grid sm:grid-cols-[175px_1fr] gap-1.5 sm:gap-6"
+                        >
+                          <div>
+                            <p className="font-mono text-[11px] font-semibold text-[#055D9B] tracking-wide">
+                              {work.contract}
+                            </p>
+                            <p className="text-[11px] text-[#02233C]/50 mt-1 tabular-nums">
+                              {work.period}
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-[13px] leading-relaxed text-[#02233C]/85">
+                              {work.title}
+                            </p>
+                            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 mt-1.5">
+                              <Check size={12} strokeWidth={3} /> 100% ejecutado
+                            </span>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+
+                {/* Pie */}
+                <div className="px-6 py-4 border-t border-slate-200 bg-slate-50/70">
+                  <p className="text-[11px] text-[#02233C]/55">
+                    Documentación contractual completa disponible para verificación.
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
     </div>
   );
 }
