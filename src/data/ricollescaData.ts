@@ -14,6 +14,7 @@ export interface FleetItem {
   detail: string;
   image: string;
   imageAlt: string;
+  images?: {src: string; alt: string}[];
 }
 
 export interface OperationalSolution {
@@ -264,6 +265,12 @@ export const WORKS_GALLERY: GalleryPhoto[] = [
     alt: 'Oficina administrativa adecuada con mobiliario y equipos operativos',
     caption: 'Adecuación de espacios administrativos y operativos',
   },
+  {
+    id: 'trabajo-carga-volqueta',
+    src: '/assets/ricollesca/trabajos/trabajo-carga-volqueta.jpg',
+    alt: 'Retroexcavadora cargando volqueta para movilización de materiales',
+    caption: 'Movilización de carga pesada con volqueta y maquinaria de apoyo',
+  },
 ];
 
 export const FLEET_ITEMS: FleetItem[] = [
@@ -274,6 +281,16 @@ export const FLEET_ITEMS: FleetItem[] = [
     detail: 'Tractocamión de alta capacidad preparado para el traslado seguro de maquinaria, tuberías y equipos de perforación en low boy y plataforma.',
     image: '/assets/ricollesca/img_59_1200x1600.jpg',
     imageAlt: 'Gandola Mack blanca de Cooperativa Ricollesca para transporte pesado',
+    images: [
+      {
+        src: '/assets/ricollesca/img_59_1200x1600.jpg',
+        alt: 'Gandola Mack blanca de Cooperativa Ricollesca para transporte pesado',
+      },
+      {
+        src: '/assets/ricollesca/trabajos/trabajo-carga-volqueta.jpg',
+        alt: 'Retroexcavadora cargando volqueta para movilización de materiales',
+      },
+    ],
   },
   {
     id: 'palfinger',
@@ -282,6 +299,16 @@ export const FLEET_ITEMS: FleetItem[] = [
     detail: 'Unidad equipada con grúa articulada de precisión y estabilizadores para carga, descarga y posicionamiento seguro de compresores y equipos en campo.',
     image: '/assets/ricollesca/img_62_957x717.jpg',
     imageAlt: 'Camión azul con brazo hidráulico Palfinger Crane cargando compresor Atlas Copco XA 90',
+    images: [
+      {
+        src: '/assets/ricollesca/img_62_957x717.jpg',
+        alt: 'Camión azul con brazo hidráulico Palfinger Crane cargando compresor Atlas Copco XA 90',
+      },
+      {
+        src: '/assets/ricollesca/trabajos/fleet-palfinger-gancho.jpg',
+        alt: 'Gancho KTL y brazo hidráulico Palfinger PK 6501 en detalle',
+      },
+    ],
   },
   {
     id: 'lincoln',
