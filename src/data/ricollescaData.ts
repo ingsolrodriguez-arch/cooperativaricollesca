@@ -281,6 +281,16 @@ export const FLEET_ITEMS: FleetItem[] = [
     detail: 'Tractocamión de alta capacidad preparado para el traslado seguro de maquinaria, tuberías y equipos de perforación en low boy y plataforma.',
     image: '/assets/ricollesca/img_24_1024x576.png',
     imageAlt: 'Gandola Mack con plataforma amarilla frente a taladro de perforación petrolera',
+    images: [
+      {
+        src: '/assets/ricollesca/img_24_1024x576.png',
+        alt: 'Gandola Mack con plataforma amarilla frente a taladro de perforación petrolera',
+      },
+      {
+        src: '/assets/ricollesca/img_59_1200x1600.jpg',
+        alt: 'Gandola Mack blanca de Cooperativa Ricollesca sin batea',
+      },
+    ],
   },
   {
     id: 'palfinger',
