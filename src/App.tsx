@@ -648,7 +648,11 @@ export default function App() {
                           <ResilientImage
                             src={fleetImages[fleetImgIndex].src}
                             alt={fleetImages[fleetImgIndex].alt}
-                            className="w-full h-full object-cover"
+                            className={`w-full h-full ${
+                              fleetImages[fleetImgIndex].contain
+                                ? 'object-contain bg-white'
+                                : 'object-cover'
+                            }`}
                           />
                         </motion.div>
                       </motion.div>

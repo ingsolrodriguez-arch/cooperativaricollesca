@@ -14,7 +14,7 @@ export interface FleetItem {
   detail: string;
   image: string;
   imageAlt: string;
-  images?: {src: string; alt: string}[];
+  images?: {src: string; alt: string; contain?: boolean}[];
 }
 
 export interface OperationalSolution {
@@ -297,6 +297,16 @@ export const FLEET_ITEMS: FleetItem[] = [
       {
         src: '/assets/ricollesca/trabajos/fleet-palfinger-gancho.jpg',
         alt: 'Gancho KTL y brazo hidráulico Palfinger PK 6501 en detalle',
+      },
+      {
+        src: '/assets/ricollesca/trabajos/fleet-palfinger-plano-transporte.jpg',
+        alt: 'Plano técnico de posición de transporte del brazo Palfinger PK 6501',
+        contain: true,
+      },
+      {
+        src: '/assets/ricollesca/trabajos/fleet-palfinger-diagrama-capacidad.jpg',
+        alt: 'Diagrama de capacidad de izamiento del Palfinger PK 6501, máximo 3.150 kg',
+        contain: true,
       },
     ],
   },
