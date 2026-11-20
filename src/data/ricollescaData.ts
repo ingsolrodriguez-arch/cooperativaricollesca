@@ -279,18 +279,8 @@ export const FLEET_ITEMS: FleetItem[] = [
     brand: 'MACK',
     summary: 'Gandola para transporte de carga pesada.',
     detail: 'Tractocamión de alta capacidad preparado para el traslado seguro de maquinaria, tuberías y equipos de perforación en low boy y plataforma.',
-    image: '/assets/ricollesca/img_59_1200x1600.jpg',
-    imageAlt: 'Gandola Mack blanca de Cooperativa Ricollesca para transporte pesado',
-    images: [
-      {
-        src: '/assets/ricollesca/img_59_1200x1600.jpg',
-        alt: 'Gandola Mack blanca de Cooperativa Ricollesca para transporte pesado',
-      },
-      {
-        src: '/assets/ricollesca/trabajos/trabajo-carga-volqueta.jpg',
-        alt: 'Retroexcavadora cargando volqueta para movilización de materiales',
-      },
-    ],
+    image: '/assets/ricollesca/img_24_1024x576.png',
+    imageAlt: 'Gandola Mack con plataforma amarilla frente a taladro de perforación petrolera',
   },
   {
     id: 'palfinger',
