@@ -53,7 +53,6 @@ export default function App() {
   const [worksIndex, setWorksIndex] = useState(0);
   const [worksPaused, setWorksPaused] = useState(false);
   const [fleetImgIndex, setFleetImgIndex] = useState(0);
-  const [fleetPaused, setFleetPaused] = useState(false);
 
   const worksSlides = [...WORKS_GALLERY, ...SERVICE_GALLERY];
 
@@ -65,7 +64,7 @@ export default function App() {
     return () => clearInterval(timer);
   }, [worksPaused, worksSlides.length]);
 
-  // Carrusel de imágenes por unidad de flota (auto-rotativo)
+  // Carrusel de imágenes por unidad de flota (auto-rotativo, siempre activo)
   useEffect(() => {
     setFleetImgIndex(0);
   }, [activeFleetId]);
@@ -73,12 +72,12 @@ export default function App() {
   useEffect(() => {
     const item = FLEET_ITEMS.find((f) => f.id === activeFleetId) ?? FLEET_ITEMS[0];
     const count = item.images?.length ?? 1;
-    if (fleetPaused || count <= 1) return;
+    if (count <= 1) return;
     const timer = setInterval(() => {
       setFleetImgIndex((i) => (i + 1) % count);
     }, 4000);
     return () => clearInterval(timer);
-  }, [fleetPaused, activeFleetId]);
+  }, [activeFleetId]);
 
   const activeHeroPhoto = HERO_DATA.gallery[activeHeroIndex] ?? HERO_DATA.gallery[0];
 
@@ -619,57 +618,62 @@ export default function App() {
 
               {/* Active Fleet Visual Showcase — carrusel auto-rotativo */}
               <div className="lg:col-span-7 flex flex-col bg-[#04375F] border border-white/12 rounded-xl overflow-hidden">
-                <button
-                  type="button"
-                  onClick={() =>
-                    setLightboxImage({
-                      src: fleetImages[fleetImgIndex].src,
-                      alt: fleetImages[fleetImgIndex].alt,
-                      caption: `${activeFleet.brand} — ${activeFleet.summary}`,
-                    })
-                  }
-                  onMouseEnter={() => setFleetPaused(true)}
-                  onMouseLeave={() => setFleetPaused(false)}
-                  className="group relative w-full h-72 sm:h-80 lg:h-96 bg-black/25 overflow-hidden text-left focus-visible:outline-2 focus-visible:outline-[#ECC440]"
-                >
-                  <AnimatePresence initial={false}>
-                    <motion.div
-                      key={fleetImages[fleetImgIndex].src}
-                      initial={{opacity: 0}}
-                      animate={{opacity: 1}}
-                      exit={{opacity: 0}}
-                      transition={{duration: 0.6, ease: 'easeInOut'}}
-                      className="absolute inset-0"
-                    >
+                <div className="relative w-full h-72 sm:h-80 lg:h-96 bg-black/25 overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setLightboxImage({
+                        src: fleetImages[fleetImgIndex].src,
+                        alt: fleetImages[fleetImgIndex].alt,
+                        caption: `${activeFleet.brand} — ${activeFleet.summary}`,
+                      })
+                    }
+                    className="group absolute inset-0 w-full h-full text-left focus-visible:outline-2 focus-visible:outline-[#ECC440]"
+                  >
+                    <AnimatePresence initial={false}>
                       <motion.div
-                        initial={{scale: 1.02}}
-                        animate={{scale: 1.08}}
-                        transition={{duration: 5.5, ease: 'linear'}}
+                        key={fleetImages[fleetImgIndex].src}
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1}}
+                        exit={{opacity: 0}}
+                        transition={{duration: 0.6, ease: 'easeInOut'}}
                         className="absolute inset-0"
                       >
-                        <ResilientImage
-                          src={fleetImages[fleetImgIndex].src}
-                          alt={fleetImages[fleetImgIndex].alt}
-                          className="w-full h-full object-cover"
-                        />
+                        <motion.div
+                          initial={{scale: 1.02}}
+                          animate={{scale: 1.08}}
+                          transition={{duration: 5.5, ease: 'linear'}}
+                          className="absolute inset-0"
+                        >
+                          <ResilientImage
+                            src={fleetImages[fleetImgIndex].src}
+                            alt={fleetImages[fleetImgIndex].alt}
+                            className="w-full h-full object-cover"
+                          />
+                        </motion.div>
                       </motion.div>
-                    </motion.div>
-                  </AnimatePresence>
+                    </AnimatePresence>
 
-                  <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#02233C]/85 text-xs font-medium text-white border border-white/15">
-                    <Expand className="w-3.5 h-3.5 text-[#ECC440]" />
-                    <span>Ampliar</span>
-                  </span>
+                    <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#02233C]/85 text-xs font-medium text-white border border-white/15">
+                      <Expand className="w-3.5 h-3.5 text-[#ECC440]" />
+                      <span>Ampliar</span>
+                    </span>
+                  </button>
 
-                  {/* Indicadores del carrusel */}
+                  {/* Controles del carrusel (clicables) */}
                   {fleetImages.length > 1 && (
-                    <div className="absolute inset-x-0 bottom-0 p-4 flex items-center justify-between gap-3 bg-gradient-to-t from-[#02233C]/75 to-transparent">
+                    <div className="absolute inset-x-0 bottom-0 z-10 p-4 flex items-center justify-between gap-3 bg-gradient-to-t from-[#02233C]/75 to-transparent">
                       <div className="flex items-center gap-2">
                         {fleetImages.map((img, i) => (
-                          <span
+                          <button
                             key={img.src}
-                            className={`h-1.5 rounded-full transition-all duration-200 ${
-                              i === fleetImgIndex ? 'w-6 bg-[#ECC440]' : 'w-1.5 bg-white/50'
+                            type="button"
+                            onClick={() => setFleetImgIndex(i)}
+                            aria-label={`Ver imagen ${i + 1} de ${activeFleet.brand}`}
+                            className={`h-1.5 rounded-full transition-all duration-200 focus-visible:outline-2 focus-visible:outline-[#ECC440] ${
+                              i === fleetImgIndex
+                                ? 'w-6 bg-[#ECC440]'
+                                : 'w-1.5 bg-white/50 hover:bg-white/85'
                             }`}
                           />
                         ))}
@@ -680,7 +684,7 @@ export default function App() {
                       </span>
                     </div>
                   )}
-                </button>
+                </div>
                 <div className="p-6">
                   <div className="flex items-center gap-2 text-xs font-medium text-[#ECC440] mb-1">
                     <span>Unidad operativa</span>
