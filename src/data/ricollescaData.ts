@@ -135,8 +135,17 @@ export const LEADERSHIP_AND_IDENTITY = {
 
 export const SERVICES: ServiceItem[] = [
   {
-    id: 'izamiento',
+    id: 'transporte-carga',
     index: '01',
+    title: 'Transporte de Carga Pesada',
+    description:
+      'Cuenta con unidades como gandolas y bateas para movilización masiva de carga a la industria petrolera.',
+    category: 'logistica',
+    categoryLabel: 'Logística y Campo',
+  },
+  {
+    id: 'izamiento',
+    index: '02',
     title: 'Izamiento',
     description: 'Maniobras de elevación, izamiento y traslado de carga y equipos pesados.',
     category: 'logistica',
@@ -144,7 +153,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: 'soldadura',
-    index: '02',
+    index: '03',
     title: 'Soldadura',
     description: 'Soldadura industrial y estructural.',
     category: 'logistica',
@@ -152,7 +161,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: 'desmalezamiento',
-    index: '03',
+    index: '04',
     title: 'Desmalezamiento',
     description: 'Limpieza y mantenimiento de áreas y terrenos.',
     category: 'mantenimiento',
@@ -160,7 +169,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: 'pintura',
-    index: '04',
+    index: '05',
     title: 'Pintura',
     description: 'Recubrimientos y acabados protectores.',
     category: 'mantenimiento',
@@ -168,7 +177,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: 'remodelacion',
-    index: '05',
+    index: '06',
     title: 'Remodelación',
     description: 'Adecuación de espacios administrativos y operativos.',
     category: 'mantenimiento',
@@ -176,7 +185,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: 'inspeccion',
-    index: '06',
+    index: '07',
     title: 'Inspección y Supervisión Industrial',
     description:
       'Inspección, supervisión y planificación en instalaciones industriales con tanques de almacenamiento, tuberías, válvulas y pasarelas.',
